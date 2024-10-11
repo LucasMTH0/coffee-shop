@@ -1,0 +1,36 @@
+<div class="container">
+  <img class="coffee-image" [src]="coffee.image_url" alt="foto do café" />
+  <div class="coffee-information">
+    <h1 class="coffee-name">{{ coffee.name }}</h1>
+    <h2 class="coffee-region">Region: {{ coffee.region }}</h2>
+    <p class="coffee-description">{{ coffee.description }}</p>
+    <p>Roast: {{ coffee.roast_level }}</p>
+    <p>
+      Grind Options: @for (option of coffee.grind_option; track $index) {
+      {{ option }}
+      }
+    </p>
+    <p>
+      Flavor Profile: @for (profile of coffee.flavor_profile; track $index) {
+      {{ profile }}
+      }
+    </p>
+    <p>Weight: {{ coffee.weight }}</p>
+    <p class="price">{{ formatService.formatPrice(coffee.price) }}</p>
+    <div class="container-buttons">
+      <button class="button-option" (click)="handleAddCoffeeToCartList()">
+        <i class="ph-bold ph-shopping-cart"></i>
+        add to cart
+      </button>
+
+      <button class="button-option" [ngClass]="{ favorited: isFavoriteCoffee }">
+        <i class="ph-bold ph-heart"></i>
+        {{ isFavoriteCoffee ? "Favorited" : "Favorite" }}
+      </button>
+    </div>
+  </div>
+</div>
+
+@if(loadingService.loading$ | async ) {
+<app-loading></app-loading>
+}

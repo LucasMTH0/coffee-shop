@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.coffee-image {
+  flex-grow: 3;
+  width: 55%;
+}
+.coffee-description {
+  font-size: 0.875rem;
+}
+.coffee-information {
+  flex-grow: 1;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 12.8px;
+}
+.coffee-region {
+  font-size: 1.1875rem;
+  font-weight: 400;
+}
+
+.price {
+  font-size: 1.375rem;
+  font-weight: 500;
+}
+
+.container-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.button-option {
+  cursor: pointer;
+  padding: 10px;
+  margin-block: 1rem;
+  border: 0;
+  border-radius: 15px;
+  border: 1px solid black;
+  color: black;
+  background: transparent;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: black;
+    color: white;
+  }
+}
+.favorited {
+  background: var(--red-300);
+  color: var(--white);
+  border: var(--red-300);
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-block: 3rem;
+  }
+  .coffee-image {
+    flex-grow: 3;
+    width: 100%;
+    height: 100%;
+  }
+  .coffee-information {
+    flex-grow: 1;
+    padding: 2rem;
+  }
+  .coffee-name,
+  .coffee-region {
+    text-align: center;
+  }
+  .container-buttons {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,106 @@
+.container {
+    background: var(--gray-900);
+    color: var(--white);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding-block: 3.125rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 3.5rem;
+    min-height: 100vh;
+
+    z-index: 987;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.3s linear;
+
+    a {
+        color: var(--white);
+        list-style: none;
+        text-decoration: none;
+    }
+
+    &:hover {
+        width: 15rem;
+        .menu-option-name {
+            display: block !important;
+        }
+    }
+
+    i{
+        
+        font-size: 2.5rem;
+    }
+
+}
+
+.mobile-menu {
+    width: 40% !important;
+    height: 100vh !important;
+    background: black !important;
+}
+
+.toggle-menu-mobile{
+    display: none;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    
+    width: 1.875rem;
+    background: transparent;
+    border: none;
+
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+}
+
+.toggle-menu-mobile.active {
+    color: white !important;
+}
+
+.toggle-menu-mobile[aria-expanded=false] .icon-menu-toggle::before{
+    content: "\2630"
+}
+
+.icon-menu-toggle {
+    display: inline-block;
+    width: 1.875rem;
+    text-align: center;
+}
+
+.logo {
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 2rem;
+
+}
+
+
+
+@media (max-width: 767px) {
+    .container {
+        background-color: transparent;
+        width: 0;
+        padding-block: 100px;
+        &:hover {
+            width: 0;
+        }
+    }
+    .toggle-menu-mobile{
+        display: block;
+    }
+}

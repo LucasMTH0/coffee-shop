@@ -1,0 +1,5 @@
+<div class="wrapper">
+    @for (coffee of coffeesList; track $index) {
+        <app-card-coffee [coffee]="coffee" (toggleFavorite)="handleFavorite($event)"></app-card-coffee>
+    }
+</div>

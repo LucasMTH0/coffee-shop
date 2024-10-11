@@ -1,0 +1,8 @@
+<div class="coffee-cart-item">
+  <img class="coffee-image" [src]="coffee?.image_url" alt="foto do café" />
+  <i class="ph-light ph-x button-remove" (click)="handleRemoveCoffee()"></i>
+  <div class="coffee-cart-item-information">
+    <h1 class="coffee-name">{{ coffee?.name }}</h1>
+    <span> {{ formatService.formatPrice(coffee?.price) }} </span>
+  </div>
+</div>

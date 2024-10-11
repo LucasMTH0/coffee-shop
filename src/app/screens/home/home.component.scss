@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  padding-inline: 5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    padding-block: 0.3125rem;
+  }
+}

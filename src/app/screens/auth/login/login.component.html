@@ -1,0 +1,8 @@
+@if(loadingService.loading$ | async ) {
+    <app-loading></app-loading>
+} @else {
+    <app-auth-form 
+        variant="login" 
+        (submitUserForm)="handleSignIn($event)"
+    ></app-auth-form>
+}

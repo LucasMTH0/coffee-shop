@@ -1,0 +1,11 @@
+<div class="container">
+  @if (coffeesList.length > 0) {
+  <app-list-coffees [coffeesList]="coffeesList"></app-list-coffees>
+  } @else {
+  <h1>Nenhum resultado encontrado.</h1>
+  }
+</div>
+
+@if(loadingService.loading$ | async ) {
+<app-loading></app-loading>
+}

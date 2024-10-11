@@ -1,0 +1,23 @@
+
+
+.menu-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 2rem;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    
+    color: var(--white);
+    list-style: none;
+    font-weight: bold;
+    font-size: 1.125rem;
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--gray-600);
+ 
+    }
+}

@@ -3,6 +3,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@components/*": ["./src/app/components/*"],
+      "@screens/*": ["./src/app/screens/*"],
+      "@services/*": ["./src/app/services/*"],
+      "@types/*": ["./src/app/types/*"],
+      "@signals/*": ["./src/app/signals/*"] 
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

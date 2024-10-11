@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.cart-container {
+  gap: 1rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.cart-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.text-cart-empty {
+  font-size: 20px;
+}

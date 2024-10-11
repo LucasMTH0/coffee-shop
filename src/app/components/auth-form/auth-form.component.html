@@ -1,0 +1,30 @@
+<div class="container">
+    <form [formGroup]="userForm" (ngSubmit)="handleSubmitUserForm()" class="form-container">
+        <h1>
+            Insira seu E-mail e senha para {{ variant == "login" ? " entrar" : " cadastrar" }}
+        </h1>
+
+        <input formControlName="email" class="input-control" type="email" placeholder="E-mail" />
+        <input formControlName="password" class="input-control"type="password" placeholder="Senha" />
+        
+        <button class="button-submit" [disabled]="userForm.invalid">
+            {{ variant == "login" ? "Entrar" : "Cadastrar" }}
+        </button>
+        
+        <span class="text-without-login">
+            @if(variant == "login"){
+                Não possui um cadastro ? 
+                <a 
+                    class="text-redirect-register"
+                    [routerLink]="['/auth/register']" 
+                >Crie aqui</a>
+            } @else {
+                Possui um cadastro ? <a 
+                        class="text-redirect-login" 
+                        [routerLink]="['/auth/login']" 
+                    >Entre aqui</a>
+            }
+        </span>
+
+    </form>
+</div>

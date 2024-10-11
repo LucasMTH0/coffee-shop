@@ -1,0 +1,26 @@
+<div class="container">
+  @if(coffeeCartList.length > 0){
+  <div class="cart-container">
+    <div class="cart-wrapper">
+      @for ( coffee of coffeeCartList; track $index) {
+      <app-card-coffee-cart
+        [coffee]="coffee"
+        (removeCoffee)="handleRemoveFromCart($event)"
+      ></app-card-coffee-cart>
+      }
+    </div>
+
+    <div class="cart-wrapper">
+      <app-subtotal-cart [subTotal]="subtotal"></app-subtotal-cart>
+    </div>
+  </div>
+  } @else {
+  <h1 class="text-cart-empty">Lista de compras vazia.</h1>
+  }
+</div>
+
+
+@if(loadingService.loading$ | async ) {
+  <app-loading></app-loading>
+  }
+  

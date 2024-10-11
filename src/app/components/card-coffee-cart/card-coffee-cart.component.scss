@@ -1,0 +1,28 @@
+.coffee-cart-item {
+  display: flex;
+  align-items: center;
+  padding-block: 10px;
+  position: relative;
+  margin-block: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.coffee-cart-item-information {
+  padding-inline: 1rem;
+}
+
+.button-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+.coffee-image {
+  width: 6.25rem;
+  // height: 200px;
+}
+
+.coffee-name {
+  font-size: 1.125rem;
+}

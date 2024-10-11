@@ -1,0 +1,14 @@
+<div class="container">
+  @if(favoritesCoffeeList.length > 0){
+  <app-list-coffees
+    [coffeesList]="favoritesCoffeeList"
+    (toggleFavoriteCoffee)="getCartList()"
+  ></app-list-coffees>
+  } @else {
+  <h1 class="text-favorites-empty">Nenhum café favorito encontrado.</h1>
+  }
+</div>
+
+@if(loadingService.loading$ | async ) {
+<app-loading></app-loading>
+}

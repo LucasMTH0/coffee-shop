@@ -1,0 +1,28 @@
+<div class="container">
+  <img
+    alt="Foto do café"
+    class="coffee-image"
+    [src]="coffee.image_url"
+    (click)="handleNavigateDetailsScreen()"
+  />
+
+  <button class="like" (click)="handleAddCoffeeToFavoriteList()">
+    <i
+      class="fav-icon ph-heart"
+      [ngClass]="{
+        'ph-thin ': !isFavoriteCoffee,
+        'ph-fill like-color': isFavoriteCoffee
+      }"
+    ></i>
+  </button>
+
+  <div class="container-content">
+    <h1>{{ coffee.name }}</h1>
+    <div class="content">
+      <h3 class="coffee-region">{{ coffee?.region }}</h3>
+      <h2 class="coffee-price">
+        {{ formatValuesService.formatPrice(coffee?.price) }}
+      </h2>
+    </div>
+  </div>
+</div>
