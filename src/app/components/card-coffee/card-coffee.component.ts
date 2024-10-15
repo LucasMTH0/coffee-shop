@@ -6,6 +6,7 @@ import { CartSignalService } from '../../signals/cart-signal/cart-signal.service
 import { CartService } from '../../services/Cart/cart.service';
 import { FavoriteService } from '@services/Favorite/favorite.service';
 import { CommonModule } from '@angular/common';
+import { UserSignalService } from '@signals/user-signal/user-signal.service';
 
 @Component({
   selector: 'app-card-coffee',
@@ -18,16 +19,19 @@ export class CardCoffeeComponent implements OnInit {
   @Input() coffee: any = {};
   @Output() toggleFavorite = new EventEmitter();
   isFavoriteCoffee: boolean = false;
+  userLogged: any = ''
   constructor(
-    private router: Router,
-    protected cartSignal: CartSignalService,
-    private cartService: CartService,
-    private favoriteService: FavoriteService,
+    protected formatValuesService: FormatValuesService,
     protected favoriteSignal: FavoriteSignalService,
-    protected formatValuesService: FormatValuesService
+    private favoriteService: FavoriteService,
+    protected cartSignal: CartSignalService,
+    private userSignal: UserSignalService,
+    private cartService: CartService,
+    private router: Router,
   ) {}
 
   async ngOnInit() {
+    this.userLogged = this.userSignal.getUserSignal();
     this.isFavoriteCoffee = await this.favoriteService.checkCoffeeIsFavorited(
       this.coffee.id
     );
@@ -46,14 +50,19 @@ export class CardCoffeeComponent implements OnInit {
   }
 
   async handleAddCoffeeToFavoriteList() {
-    if (this.isFavoriteCoffee) {
-      await this.favoriteService.removeFromFavorites(this.coffee.collectionId);
-      this.isFavoriteCoffee = false;
+    if(!this.userLogged){
+      this.router.navigate(['/login'])
     } else {
-      this.favoriteService.addToFavorites(this.coffee);
-      this.isFavoriteCoffee = await this.favoriteService.checkCoffeeIsFavorited(
-        this.coffee.id
-      );
+      if (this.isFavoriteCoffee) {
+        await this.favoriteService.removeFromFavorites(this.coffee.collectionId);
+        this.isFavoriteCoffee = false;
+      } else {
+        this.favoriteService.addToFavorites(this.coffee);
+        this.isFavoriteCoffee = await this.favoriteService.checkCoffeeIsFavorited(
+          this.coffee.id
+        );
+      }
     }
+
   }
 }

@@ -30,10 +30,6 @@ export class FavoriteService {
 
   async getFavoritesCoffees() {
     const userId = this.authService.getUserId();
-    if (!userId) {
-      this.router.navigate(['/auth/login']);
-    }
-
     const coffeesListDB = await getDocs(
       query(collection(this.firestore, 'favorite'))
     );
@@ -80,9 +76,7 @@ export class FavoriteService {
 
   async addToFavorites(coffee: any) {
     const userId = this.authService.getUserId();
-    if (!userId) {
-      this.router.navigate(['/auth/login']);
-    } else {
+
       try {
         const cartItem = { userId: userId, coffeeId: coffee.id };
         await addDoc(collection(this.firestore, 'favorite'), cartItem);
@@ -92,5 +86,5 @@ export class FavoriteService {
         console.log(err);
       }
     }
-  }
+  
 }

@@ -34,9 +34,6 @@ export class CartService {
 
   async getCartCoffees() {
     const userId = this.authService.getUserId();
-    if (!userId) {
-      this.router.navigate(['/auth/login']);
-    }
     const collectionCart = collection(this.firestore, 'cart');
     const coffeesList = (await getDocs(query(collectionCart))).docs.map(
       (coffees) => coffees.data()
@@ -55,12 +52,11 @@ export class CartService {
 
   async addCoffeeToCart(coffee: coffee) {
     const userId = this.authService.getUserId();
-    if (!userId) {
-      this.router.navigate(['/auth/login']);
+    if(!userId){
+      this.router.navigate(['/login'])
     } else {
       try {
         const cartItem = { userId: userId, coffeeId: coffee.id };
-        console.log('coffee to add: ', cartItem);
         await addDoc(collection(this.firestore, 'cart'), cartItem);
         this.cartSignal.addCoffeeToCartSignal(coffee);
         this.toastr.success('Café adicionado ao carrinho!');

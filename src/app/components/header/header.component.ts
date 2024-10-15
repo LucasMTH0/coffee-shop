@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   async handleLogoutUser(): Promise<void>{
     const logout = await this.authService.logout()
     this.userLogged = null;
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 
 }

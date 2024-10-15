@@ -15,23 +15,24 @@
             <app-menu-option iconName="ph-coffee" menuOptionName="Home"></app-menu-option>
         </a>
 
-        <a [routerLink]="['/favorites']">
-            <app-menu-option iconName="ph-heart" menuOptionName="Favorites"></app-menu-option>
-        </a>    
-        
-        <a [routerLink]="['/cart']">
-            <app-menu-option iconName="ph-bold ph-shopping-cart" menuOptionName="Cart"></app-menu-option>
-        </a>
-
         @if (!userLogged) {
-            <a [routerLink]="['/auth/login']">
+            <a [routerLink]="['/login']">
                 <app-menu-option iconName="ph-user" menuOptionName="Login"></app-menu-option>
             </a> 
 
-            <a [routerLink]="['/auth/register']">
+            <a [routerLink]="['/register']">
                 <app-menu-option iconName="ph-user-plus" menuOptionName="Register"></app-menu-option>
             </a>
         } @else {
+
+            <a [routerLink]="['/favorites']">
+                <app-menu-option iconName="ph-heart" menuOptionName="Favorites"></app-menu-option>
+            </a>    
+            
+            <a [routerLink]="['/cart']">
+                <app-menu-option iconName="ph-bold ph-shopping-cart" menuOptionName="Cart"></app-menu-option>
+            </a>
+
             <app-menu-option iconName="ph-sign-out" menuOptionName="Logout" (click)="handleLogoutUser()"></app-menu-option>
         }
     </ul>

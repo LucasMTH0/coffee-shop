@@ -7,7 +7,8 @@ import { CoffeeService } from '@services/Coffee/coffee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CartService } from '@services/Cart/cart.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserSignalService } from '@signals/user-signal/user-signal.service';
 
 @Component({
   templateUrl: './details.component.html',
@@ -21,14 +22,18 @@ export class DetailsComponent implements OnInit {
   protected isFavoriteCoffee: any = null;
   destroyRef = inject(DestroyRef);
   protected coffee: any = {};
-
+  userLogged = null
   constructor(
     protected formatService: FormatValuesService,
     private favoriteService: FavoriteService,
     protected loadingService: LoadingService,
+    private userSignal: UserSignalService,
     private coffeeService: CoffeeService,
-    private cartService: CartService
-  ) {}
+    private cartService: CartService,
+    private router: Router
+  ) {
+    this.userLogged = this.userSignal.getUserSignal();
+  }
 
   ngOnInit(): void {
     this.coffeeService
@@ -42,15 +47,19 @@ export class DetailsComponent implements OnInit {
   }
 
   async handleToggleFavoriteCoffee() {
-    this.loadingService.loadingOn();
-    if (this.isFavoriteCoffee) {
-      await this.favoriteService.removeFromFavorites(this.isFavoriteCoffee);
-      this.isFavoriteCoffee = false;
+    if(!this.userLogged){
+      this.router.navigate(['/login'])
     } else {
-      this.favoriteService.addToFavorites(this.coffee);
-      this.isFavoriteCoffee = true;
+      this.loadingService.loadingOn();
+      if (this.isFavoriteCoffee) {
+        await this.favoriteService.removeFromFavorites(this.isFavoriteCoffee);
+        this.isFavoriteCoffee = false;
+      } else {
+        this.favoriteService.addToFavorites(this.coffee);
+        this.isFavoriteCoffee = true;
+      }
+      this.loadingService.loadingOff();
     }
-    this.loadingService.loadingOff();
   }
 
   handleAddCoffeeToCartList() {

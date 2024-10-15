@@ -33,7 +33,7 @@ export class AuthService {
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
     })
       .catch((error) => {
         const errorCode = error.code;
@@ -53,7 +53,9 @@ export class AuthService {
     const user = localStorage.getItem('@coffee-shop:user')
     if (user && user.length > 0) {
       this.userSignal.setUserSignal(JSON.parse(user));
-    }
+      return true
+    } 
+    return false
   }
 
   getUserId(){
